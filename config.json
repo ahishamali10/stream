@@ -5,7 +5,7 @@
   "ICON": "",
   "APP_ID": "d7243834eebc4a6f95f2dacd7418a5bf",
   "PRIMARY_COLOR": "#00AEFC",
-  "FRONTEND_ENDPOINT": "",
+  "FRONTEND_ENDPOINT": "https://677aade7ef13ad97be3decc7--sharek-stream.netlify.app",
   "BACKEND_ENDPOINT": "https://managedservices-prod.rteappbuilder.com",
   "PSTN": false,
   "PRECALL": true,
