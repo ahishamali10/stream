@@ -65,6 +65,7 @@ export default function useCreateRoom(): createRoomFun {
       },
       variables: {
         title: roomTitle,
+        backendURL: $config.BACKEND_ENDPOINT,
         enablePSTN: enablePSTN,
       },
     });

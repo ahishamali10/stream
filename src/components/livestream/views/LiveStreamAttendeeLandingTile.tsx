@@ -120,16 +120,16 @@ export default function LiveStreamAttendeeLandingTile() {
             <View style={[style.tileSection, style.tileheader]}>
               <Text style={style.tileHeading}>{waitingForHostToJoin}</Text>
             </View>
-            <View style={[style.tileSection, style.tilebody]}>
-              <View>
-                <Text style={style.tileSubheading}>{whatYouCanDoHere}</Text>
-              </View>
-              <View style={style.tileSectionGrid}>
-                {features.map(feature => (
-                  <FeatureTile key={feature.id} feature={feature} />
-                ))}
-              </View>
-            </View>
+            {/*<View style={[style.tileSection, style.tilebody]}>*/}
+            {/*  <View>*/}
+            {/*    <Text style={style.tileSubheading}>{whatYouCanDoHere}</Text>*/}
+            {/*  </View>*/}
+            {/*  <View style={style.tileSectionGrid}>*/}
+            {/*    {features.map(feature => (*/}
+            {/*      <FeatureTile key={feature.id} feature={feature} />*/}
+            {/*    ))}*/}
+            {/*  </View>*/}
+            {/*</View>*/}
             <View style={[style.tileSection]}>
               <View>
                 {isMobile ? (
@@ -190,8 +190,8 @@ const style = StyleSheet.create({
     marginVertical: 4,
   },
   tileContainer: {
-    maxWidth: 600,
-    minWidth: 200,
+    maxWidth: 800,
+    minWidth: 500,
     margin: 'auto',
     padding: 20,
     height: '100%',

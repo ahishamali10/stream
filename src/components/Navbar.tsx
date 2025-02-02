@@ -1,12 +1,12 @@
 /*
 ********************************************
  Copyright © 2021 Agora Lab, Inc., all rights reserved.
- AppBuilder and all associated components, source code, APIs, services, and documentation 
- (the “Materials”) are owned by Agora Lab, Inc. and its licensors. The Materials may not be 
- accessed, used, modified, or distributed for any purpose without a license from Agora Lab, Inc.  
- Use without a license or in violation of any license terms and conditions (including use for 
- any purpose competitive to Agora Lab, Inc.’s business) is strictly prohibited. For more 
- information visit https://appbuilder.agora.io. 
+ AppBuilder and all associated components, source code, APIs, services, and documentation
+ (the “Materials”) are owned by Agora Lab, Inc. and its licensors. The Materials may not be
+ accessed, used, modified, or distributed for any purpose without a license from Agora Lab, Inc.
+ Use without a license or in violation of any license terms and conditions (including use for
+ any purpose competitive to Agora Lab, Inc.’s business) is strictly prohibited. For more
+ information visit https://appbuilder.agora.io.
 *********************************************
 */
 import React, {useContext, useEffect} from 'react';
@@ -102,6 +102,7 @@ export interface ParticipantsIconButtonProps {
   };
   render?: (onPress: () => void, isPanelActive: boolean) => JSX.Element;
 }
+
 export const ParticipantsIconButton = (props: ParticipantsIconButtonProps) => {
   const {label = null, onPress: onPressCustom = null} = useToolbarProps();
   const {isToolbarMenuItem} = useToolbarMenu();
@@ -494,10 +495,14 @@ export interface NavbarProps {
   items?: ToolbarPresetProps['items'];
   includeDefaultItems?: boolean;
 }
+
 const Navbar = (props: NavbarProps) => {
   const {includeDefaultItems = true, items = {}} = props;
   const {width, height} = useWindowDimensions();
   const {languageCode} = useLanguage();
+  const {
+    data: {isHost},
+  } = useRoomInfo();
 
   const isHidden = (hide: ToolbarItemHide = false) => {
     try {
@@ -590,9 +595,11 @@ const Navbar = (props: NavbarProps) => {
       <View style={style.centerContent}>
         {renderContent(centerItemsOrdered, 'center')}
       </View>
-      <View style={style.endContent}>
-        {renderContent(endItemsOrdered, 'end')}
-      </View>
+      {isHost && (
+        <View style={style.endContent}>
+          {renderContent(endItemsOrdered, 'end')}
+        </View>
+      )}
     </Toolbar>
   );
 };

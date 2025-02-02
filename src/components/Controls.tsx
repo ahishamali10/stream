@@ -1,12 +1,12 @@
 /*
 ********************************************
  Copyright © 2021 Agora Lab, Inc., all rights reserved.
- AppBuilder and all associated components, source code, APIs, services, and documentation 
- (the “Materials”) are owned by Agora Lab, Inc. and its licensors. The Materials may not be 
- accessed, used, modified, or distributed for any purpose without a license from Agora Lab, Inc.  
- Use without a license or in violation of any license terms and conditions (including use for 
- any purpose competitive to Agora Lab, Inc.’s business) is strictly prohibited. For more 
- information visit https://appbuilder.agora.io. 
+ AppBuilder and all associated components, source code, APIs, services, and documentation
+ (the “Materials”) are owned by Agora Lab, Inc. and its licensors. The Materials may not be
+ accessed, used, modified, or distributed for any purpose without a license from Agora Lab, Inc.
+ Use without a license or in violation of any license terms and conditions (including use for
+ any purpose competitive to Agora Lab, Inc.’s business) is strictly prohibited. For more
+ information visit https://appbuilder.agora.io.
 *********************************************
 */
 import React, {
@@ -112,6 +112,7 @@ import ViewRecordingsModal from './recordings/ViewRecordingsModal';
 import {filterObject} from '../utils/index';
 import {useLanguage} from '../language/useLanguage';
 import RecordingDeletePopup from './recordings/RecordingDeletePopup';
+import useIsHost from "../utils/useIsHost";
 
 export const useToggleWhiteboard = () => {
   const {
@@ -1195,6 +1196,72 @@ const defaultItems: ToolbarPresetProps['items'] = {
   },
 };
 
+const defaultItemsforAudience: ToolbarPresetProps['items'] = {
+  layout: {
+    align: 'start',
+    component: LayoutToolbarItem,
+    order: 0,
+    hide: w => {
+      return w < BREAKPOINTS.lg ? true : true;
+    },
+  },
+  invite: {
+    align: 'start',
+    component: InviteToolbarItem,
+    order: 1,
+    hide: w => {
+      return w < BREAKPOINTS.lg ? true : false;
+    },
+  },
+  'raise-hand': {
+    align: 'center',
+    component: RaiseHandToolbarItem,
+    order: 0,
+  },
+  'local-audio': {
+    align: 'center',
+    component: LocalAudioToolbarItem,
+    order: 1,
+  },
+  'local-video': {
+    align: 'center',
+    component: LocalVideoToolbarItem,
+    order: 2,
+  },
+  'switch-camera': {
+    align: 'center',
+    component: SwitchCameraToolbarItem,
+    order: 3,
+  },
+  screenshare: {
+    align: 'center',
+    component: ScreenShareToolbarItem,
+    order: 4,
+    hide: w => {
+      return w < BREAKPOINTS.sm ? true : false;
+    },
+  },
+  recording: {
+    align: 'center',
+    component: RecordingToolbarItem,
+    order: 5,
+    hide: w => {
+      return w < BREAKPOINTS.sm ? true : false;
+    },
+  },
+  more: {
+    align: 'center',
+    component: MoreButtonToolbarItem,
+    order: 6,
+  },
+  'end-call': {
+    align: 'center',
+    component: LocalEndcallToolbarItem,
+    order: 7,
+  },
+};
+
+
 export interface ControlsProps {
   items?: ToolbarPresetProps['items'];
   includeDefaultItems?: boolean;
@@ -1308,9 +1375,12 @@ const Controls = (props: ControlsProps) => {
       return false;
     }
   };
+  const {
+    data: {isHost},
+  } = useRoomInfo();
 
   const mergedItems = CustomToolbarMerge(
-    includeDefaultItems ? defaultItems : {},
+    includeDefaultItems && isHost ? defaultItems : defaultItemsforAudience,
     items,
   );
 

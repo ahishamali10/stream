@@ -327,16 +327,16 @@ export default function UserActionMenuOptionsOptions(
           }
         }
 
-        items.push({
-          icon: 'remove-meeting',
-          iconColor: $config.SEMANTIC_ERROR,
-          textColor: $config.SEMANTIC_ERROR,
-          title: removeFromRoomLabel,
-          onPress: () => {
-            setActionMenuVisible(false);
-            setRemoveMeetingPopupVisible(true);
-          },
-        });
+        // items.push({
+        //   icon: 'remove-meeting',
+        //   iconColor: $config.SEMANTIC_ERROR,
+        //   textColor: $config.SEMANTIC_ERROR,
+        //   title: removeFromRoomLabel,
+        //   onPress: () => {
+        //     setActionMenuVisible(false);
+        //     setRemoveMeetingPopupVisible(true);
+        //   },
+        // });
       }
     }
 
