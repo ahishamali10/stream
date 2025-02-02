@@ -389,7 +389,7 @@ const ActionSheetContent = props => {
       order: !(isAudioCastHost || isVoiceChatHost || isVoiceChatAudience)
         ? 5
         : 0,
-      /*For AudioCast Host:Chat ,Attendee:Raise Hand 
+      /*For AudioCast Host:Chat ,Attendee:Raise Hand
             For VoiceChat Host:Chat, Attendee:Chat
            */
       component: ChatIcon,
@@ -446,6 +446,92 @@ const ActionSheetContent = props => {
     },
   };
 
+  const defaultItemsForAudience = {
+    // 'local-audio': {
+    //   order: 0,
+    //   component: isAudioVideoControlsDisabled ? null : AudioIcon,
+    // },
+    // 'raise-hand': {
+    //   order: $config.RAISE_HAND && isAudioRoom ? 0 : 4,
+    //   component:
+    //     ((isAudioCastAudience && isLiveStream && isAudience) ||
+    //     (isBroadCasting && !isHost)
+    //       ? LiveStreamIcon
+    //       : null) ||
+    //     ((isLiveStream && isAudience) || (isBroadCasting && !isHost)
+    //       ? LiveStreamIcon
+    //       : null),
+    // },
+    // 'local-video': {
+    //   order: 1,
+    //   component:
+    //     !isAudioRoom && (isAudioVideoControlsDisabled ? null : CamIcon),
+    // },
+    'end-call': {
+      order: 2,
+      component: EndCallIcon,
+    },
+    // chat: {
+    //   order: !(isAudioCastHost || isVoiceChatHost || isVoiceChatAudience)
+    //     ? 5
+    //     : 0,
+    //   /*For AudioCast Host:Chat ,Attendee:Raise Hand
+    //         For VoiceChat Host:Chat, Attendee:Chat
+    //        */
+    //   component: ChatIcon,
+    // },
+    // participant: {
+    //   order: 6,
+    //   component: ParticipantsIcon,
+    // },
+    // recording: {
+    //   order: 7,
+    //   component: isHost && $config.CLOUD_RECORDING ? RecordingIcon : null,
+    // },
+    'virtual-background': {
+      order: 7,
+      component:
+        $config.ENABLE_VIRTUAL_BACKGROUND && !$config.AUDIO_ROOM
+          ? VBIcon
+          : null,
+    },
+    'switch-camera': {
+      order: 8,
+      component:
+        !isAudioRoom &&
+        (isAudioVideoControlsDisabled ? null : SwitchCameraIcon),
+    },
+    // layout: {
+    //   order: 9,
+    //   component: LayoutIcon,
+    // },
+    // settings: {
+    //   order: 10,
+    //   component: SettingsIcon,
+    // },
+    // screenshare: {
+    //   order: 10,
+    //   component: isAndroid() || isIOS() ? ScreenshareIcon : null,
+    // },
+    invite: {
+      order: 11,
+      component: ShareIcon,
+    },
+    // caption: {
+    //   order: 12,
+    //   component: CaptionIconBtn,
+    //   props: {
+    //     onPressCallback: () => {
+    //       handleSheetChanges(isExpanded ? 0 : 1);
+    //     },
+    //   },
+    // },
+    // transcript: {
+    //   order: 13,
+    //   component: TranscriptIconBtn,
+    // },
+  };
+
   const {width, height} = useWindowDimensions();
 
   const isHidden = (hide: ToolbarItemHide = false) => {
@@ -464,7 +550,7 @@ const ActionSheetContent = props => {
   const combinedData = {...items, ...items?.more?.fields};
 
   const mergedItems = CustomToolbarMerge(
-    includeDefaultItems ? defaultItems : {},
+    includeDefaultItems && isHost ? defaultItems : defaultItemsForAudience,
     combinedData,
   );
 

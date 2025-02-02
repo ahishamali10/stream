@@ -1197,14 +1197,14 @@ const defaultItems: ToolbarPresetProps['items'] = {
 };
 
 const defaultItemsforAudience: ToolbarPresetProps['items'] = {
-  layout: {
-    align: 'start',
-    component: LayoutToolbarItem,
-    order: 0,
-    hide: w => {
-      return w < BREAKPOINTS.lg ? true : true;
-    },
-  },
+  // layout: {
+  //   align: 'start',
+  //   component: LayoutToolbarItem,
+  //   order: 0,
+  //   hide: w => {
+  //     return w < BREAKPOINTS.lg ? true : true;
+  //   },
+  // },
   invite: {
     align: 'start',
     component: InviteToolbarItem,
@@ -1213,47 +1213,47 @@ const defaultItemsforAudience: ToolbarPresetProps['items'] = {
       return w < BREAKPOINTS.lg ? true : false;
     },
   },
-  'raise-hand': {
-    align: 'center',
-    component: RaiseHandToolbarItem,
-    order: 0,
-  },
-  'local-audio': {
-    align: 'center',
-    component: LocalAudioToolbarItem,
-    order: 1,
-  },
-  'local-video': {
-    align: 'center',
-    component: LocalVideoToolbarItem,
-    order: 2,
-  },
-  'switch-camera': {
-    align: 'center',
-    component: SwitchCameraToolbarItem,
-    order: 3,
-  },
-  screenshare: {
-    align: 'center',
-    component: ScreenShareToolbarItem,
-    order: 4,
-    hide: w => {
-      return w < BREAKPOINTS.sm ? true : false;
-    },
-  },
-  recording: {
-    align: 'center',
-    component: RecordingToolbarItem,
-    order: 5,
-    hide: w => {
-      return w < BREAKPOINTS.sm ? true : false;
-    },
-  },
-  more: {
-    align: 'center',
-    component: MoreButtonToolbarItem,
-    order: 6,
-  },
+  // 'raise-hand': {
+  //   align: 'center',
+  //   component: RaiseHandToolbarItem,
+  //   order: 0,
+  // },
+  // 'local-audio': {
+  //   align: 'center',
+  //   component: LocalAudioToolbarItem,
+  //   order: 1,
+  // },
+  // 'local-video': {
+  //   align: 'center',
+  //   component: LocalVideoToolbarItem,
+  //   order: 2,
+  // },
+  // 'switch-camera': {
+  //   align: 'center',
+  //   component: SwitchCameraToolbarItem,
+  //   order: 3,
+  // },
+  // screenshare: {
+  //   align: 'center',
+  //   component: ScreenShareToolbarItem,
+  //   order: 4,
+  //   hide: w => {
+  //     return w < BREAKPOINTS.sm ? true : false;
+  //   },
+  // },
+  // recording: {
+  //   align: 'center',
+  //   component: RecordingToolbarItem,
+  //   order: 5,
+  //   hide: w => {
+  //     return w < BREAKPOINTS.sm ? true : false;
+  //   },
+  // },
+  // more: {
+  //   align: 'center',
+  //   component: MoreButtonToolbarItem,
+  //   order: 6,
+  // },
   'end-call': {
     align: 'center',
     component: LocalEndcallToolbarItem,
