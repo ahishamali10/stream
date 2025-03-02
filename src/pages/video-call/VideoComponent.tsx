@@ -112,7 +112,7 @@ const VideoComponent = () => {
             layoutsData[layout].name === DefaultLayouts[1].name) ? (
             <>
               <Spacer size={8} horizontal={isDesktop() ? true : false} />
-              <MeetingInfoGridTile />
+              {/*<MeetingInfoGridTile />*/}
             </>
           ) : (
             <></>
